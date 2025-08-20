@@ -10,22 +10,19 @@ public struct Rooms
 }
 public class RoomManager : MonoBehaviour
 {
-    [SerializeField] private GameObject[] rooms;
     [SerializeField] private Rooms[] roomes;
-
+    [SerializeField] private float movein = 0.2f;
+    [SerializeField] private float moveout = -2f;
     private int currentIndex = 0;
-
     public void RotateRoom(int direction)
     {
-        transform.DOLocalRotate(Vector3.up * direction, 1).OnComplete(() =>
-        {    
-            roomes[currentIndex].Walls1.SetActive(direction == 0);
-            roomes[currentIndex].Walls2.SetActive(direction == 180);
-        });
+        roomes[currentIndex].Walls1.transform.DOLocalMoveY(direction == 0 ? movein : moveout, 1);
+        roomes[currentIndex].Walls2.transform.DOLocalMoveY(direction == 180 ? movein : moveout, 1);
+        transform.DOLocalRotate(Vector3.up * direction, 1);
     }
-
     public void ChangeRoom(int direction)
     {
+        RotateRoom(0);
         roomes[currentIndex].Room.SetActive(false);
         currentIndex = (currentIndex + direction + roomes.Length) % roomes.Length;
         roomes[currentIndex].Room.SetActive(true);
