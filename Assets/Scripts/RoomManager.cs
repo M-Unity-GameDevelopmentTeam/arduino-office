@@ -1,4 +1,5 @@
 using UnityEngine;
+using DG.Tweening;
 using System;
 [Serializable]
 public struct Rooms
@@ -11,14 +12,16 @@ public class RoomManager : MonoBehaviour
 {
     [SerializeField] private GameObject[] rooms;
     [SerializeField] private Rooms[] roomes;
+
     private int currentIndex = 0;
 
     public void RotateRoom(int direction)
     {
-        transform.Rotate(Vector3.up, 180 * direction, 0);
-        print(transform.localEulerAngles.y);
-        roomes[currentIndex].Walls1.SetActive(transform.localEulerAngles.y == 0);
-        roomes[currentIndex].Walls2.SetActive(transform.localEulerAngles.y == 180);
+        transform.DOLocalRotate(Vector3.up * direction, 1).OnComplete(() =>
+        {    
+            roomes[currentIndex].Walls1.SetActive(direction == 0);
+            roomes[currentIndex].Walls2.SetActive(direction == 180);
+        });
     }
 
     public void ChangeRoom(int direction)
