@@ -7,24 +7,53 @@ public struct Rooms
     public GameObject Room;
     public GameObject Walls1;
     public GameObject Walls2;
+    
 }
 public class RoomManager : MonoBehaviour
 {
-    [SerializeField] private Rooms[] roomes;
-    [SerializeField] private float movein = 0.2f;
-    [SerializeField] private float moveout = -2f;
-    private int currentIndex = 0;
-    public void RotateRoom(int direction)
+    [SerializeField] private Rooms[] RoomsX;
+    [SerializeField] private Rooms[] RoomsZ;
+    [SerializeField] private float MoveIn = 0.2f;
+    [SerializeField] private float MoveOut = -2;
+    [SerializeField] private int Padding;
+    private int RoomXTempPosition;
+    private int RoomZTempPosition;
+    private int CurrentRoomXIndex;
+    private int CurrentRoomZIndex;
+    private void Awake()
     {
-        roomes[currentIndex].Walls1.transform.DOLocalMoveY(direction == 0 ? movein : moveout, 1);
-        roomes[currentIndex].Walls2.transform.DOLocalMoveY(direction == 180 ? movein : moveout, 1);
-        transform.DOLocalRotate(Vector3.up * direction, 1);
+        foreach (Rooms RoomX in RoomsX)
+        {
+            RoomX.Room.transform.DOLocalMoveX(RoomXTempPosition, 0);
+            RoomXTempPosition += Padding;
+        }
+        foreach (Rooms RoomZ in RoomsZ)
+        {
+            RoomZ.Room.transform.DOLocalMoveZ(RoomZTempPosition, 0);
+            RoomZTempPosition += Padding;
+        }
+
     }
-    public void ChangeRoom(int direction)
+    public void RotateRoom()
     {
-        RotateRoom(0);
-        roomes[currentIndex].Room.SetActive(false);
-        currentIndex = (currentIndex + direction + roomes.Length) % roomes.Length;
-        roomes[currentIndex].Room.SetActive(true);
+
+    }
+    private void Update()
+    {
+        print(CurrentRoomXIndex);
+    }
+    public void ChangeRoomsX(int Direction)
+    {
+        if (CurrentRoomZIndex != 0)
+            return;
+        CurrentRoomXIndex += Direction;
+        transform.DOLocalMoveX(CurrentRoomXIndex * -Padding, 1);
+    }
+    public void ChangeRoomsZ(int Direction)
+    {
+        if (CurrentRoomXIndex != 0)
+            return;
+        CurrentRoomZIndex += Direction;
+        transform.DOLocalMoveZ(CurrentRoomZIndex * -Padding, 1);
     }
 }
