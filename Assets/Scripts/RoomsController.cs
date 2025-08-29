@@ -1,7 +1,5 @@
 using UnityEngine;
 using DG.Tweening;
-using UnityEngine.UI;
-//using System.Collections;
 public class RoomsController : MonoBehaviour
 {
     [SerializeField] private GameObject[] Rooms;
@@ -33,39 +31,8 @@ public class RoomsController : MonoBehaviour
             }
             RowSize = RoomZTempPosition / Padding + 1;
         }
-        //StartCoroutine(nameof(SEPlacement));
     }
-    //private IEnumerator SEPlacement()
-    //{
-    //    yield return new WaitForSeconds(10);
-    //    foreach (Rooms RoomToPlace in Rooms)
-    //    {
-    //        yield return new WaitForSeconds(2);
-    //        RoomToPlace.Room.transform.DOLocalMoveX(RoomXTempPosition, 5);
-    //        RoomToPlace.Room.transform.DOLocalMoveZ(RoomZTempPosition, 5);
-    //        switch ((RoomXTempPosition / Padding) < ColumnSize - 1)
-    //        {
-    //            case true:
-    //                print("X:" + RoomXTempPosition);
-    //                print("Z:" + RoomZTempPosition);
-    //                yield return new WaitForSeconds(2);
-    //                RoomXTempPosition += Padding;
-    //                break;
-    //            default:
-    //                print("X:" + RoomXTempPosition);
-    //                print("Z:" + RoomZTempPosition);
-    //                yield return new WaitForSeconds(2);
-    //                RoomXTempPosition = 0;
-    //                RoomZTempPosition += Padding;
-    //                break;
-    //        }
-    //        RowSize = RoomZTempPosition / Padding;
-    //    }
-    //}
-    public void RotateRoom()
-    {
-        CurrentRoom.RotateRoom();
-    }
+    public void RotateRoom() => CurrentRoom.RotateRoom();
     public void ChangeRoomsX(int Direction)
     {
         if ((CurrentRoomXIndex + Direction) >= ColumnSize || (CurrentRoomXIndex + Direction) < 0)
