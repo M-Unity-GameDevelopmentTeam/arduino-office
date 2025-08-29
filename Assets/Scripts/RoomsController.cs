@@ -72,15 +72,26 @@ public class RoomsController : MonoBehaviour
             CurrentRoomXIndex = 0;
         else
             CurrentRoomXIndex += Direction;
+        print(CurrentRoomXIndex);
         transform.DOLocalMoveX(CurrentRoomXIndex * -Padding, 1).OnComplete(() => GetCurrentRoom());
     }
     public void ChangeRoomsZ(int Direction)
     {
         if ((CurrentRoomZIndex + Direction) >= RowSize || (CurrentRoomZIndex + Direction) < 0)
             CurrentRoomZIndex = 0;
-        else 
+        else
             CurrentRoomZIndex += Direction;
         transform.DOLocalMoveZ(CurrentRoomZIndex * -Padding, 1).OnComplete(() => GetCurrentRoom());
+    }
+    public void MoveToRoomsX(int Multiplier)
+    {
+        CurrentRoomXIndex = Multiplier;
+        transform.DOLocalMoveX(Multiplier * -Padding, 1).OnComplete(() => GetCurrentRoom());
+    }
+    public void MoveToRoomsZ(int Multiplier)
+    {
+        CurrentRoomZIndex = Multiplier;
+        transform.DOLocalMoveZ(Multiplier * -Padding, 1).OnComplete(() => GetCurrentRoom());
     }
     private void GetCurrentRoom()
     {
