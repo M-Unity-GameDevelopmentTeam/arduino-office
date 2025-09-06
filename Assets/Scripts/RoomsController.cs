@@ -63,6 +63,5 @@ public class RoomsController : MonoBehaviour
     private void GetCurrentRoom()
     {
         CurrentRoom = Physics.OverlapBox(Vector3.zero, Vector3.one, Quaternion.identity, RoomsMask)[0].GetComponent<Room>();
-        print(CurrentRoom.FRoomID);
     }
 }
