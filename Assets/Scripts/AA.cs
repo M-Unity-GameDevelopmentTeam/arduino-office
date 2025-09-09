@@ -14,6 +14,7 @@ using UnityEngine.InputSystem;
  */
 public class AA : MonoBehaviour
 {
+    [SerializeField] private string MorseCode;
     public SerialController serialController;
 
     // Initialization
@@ -38,7 +39,7 @@ public class AA : MonoBehaviour
         if (Keyboard.current.digit1Key.wasReleasedThisFrame)
         {
             Debug.Log("Sending lights ON");
-            serialController.SendSerialMessage("1:....");
+            serialController.SendSerialMessage($"1:{MorseCode}");
         }
 
         if (Keyboard.current.digit2Key.wasReleasedThisFrame)

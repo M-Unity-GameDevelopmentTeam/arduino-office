@@ -14,8 +14,8 @@ public class Room : MonoBehaviour
     {
         Direction = !Direction;
         DirectionAngle = !Direction ? 0 : 180;
-        Walls1.transform.DOLocalMoveY(!Direction ? MoveIn : MoveOut, 1);
-        Walls2.transform.DOLocalMoveY(Direction ? MoveIn : MoveOut, 1);
+        Walls1.transform.DOLocalMoveZ(!Direction ? MoveIn : MoveOut, 1);
+        Walls2.transform.DOLocalMoveZ(Direction ? MoveIn : MoveOut, 1);
         transform.DOLocalRotate(Vector3.up * DirectionAngle, 1);
     }
 }
