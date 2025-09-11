@@ -12,6 +12,10 @@ namespace Game.Input
         public static InputAction Interact => input.Player.Interact;
         public static InputAction Pointer => input.UI.Point;
         public static InputAction Click => input.Mouse.Click;
+        public static InputAction DialogNextPhrase => input.Dialog.DialogNextPhrase;
+        public static InputActionMap Player => input.Player;
+        public static InputActionMap Dialog => input.Dialog;
+        public static InputAction DialogEscape => input.Dialog.Escape;
         public static Vector2 MoveAxis;
         public static Vector2 CustomMoveAxis;
         private void Awake()

@@ -1097,6 +1097,54 @@ namespace Game.Input
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Dialog"",
+            ""id"": ""e5675a28-b730-4c40-87c7-65a1bf05c93b"",
+            ""actions"": [
+                {
+                    ""name"": ""Escape"",
+                    ""type"": ""Button"",
+                    ""id"": ""d3c60abc-495c-48de-89b3-3cb5f29e852d"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""DialogNextPhrase"",
+                    ""type"": ""Button"",
+                    ""id"": ""fa1d88ff-a9f2-4e87-839a-bd77ad52d64a"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""dfe96d4b-fd05-4813-9ab5-942fb15297ba"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Escape"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0c7725ba-05d8-4408-87f3-0f2a4a6aa2e6"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DialogNextPhrase"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -1187,6 +1235,10 @@ namespace Game.Input
             // Mouse
             m_Mouse = asset.FindActionMap("Mouse", throwIfNotFound: true);
             m_Mouse_Click = m_Mouse.FindAction("Click", throwIfNotFound: true);
+            // Dialog
+            m_Dialog = asset.FindActionMap("Dialog", throwIfNotFound: true);
+            m_Dialog_Escape = m_Dialog.FindAction("Escape", throwIfNotFound: true);
+            m_Dialog_DialogNextPhrase = m_Dialog.FindAction("DialogNextPhrase", throwIfNotFound: true);
         }
 
         ~@MainInputAction()
@@ -1194,6 +1246,7 @@ namespace Game.Input
             UnityEngine.Debug.Assert(!m_Player.enabled, "This will cause a leak and performance issues, MainInputAction.Player.Disable() has not been called.");
             UnityEngine.Debug.Assert(!m_UI.enabled, "This will cause a leak and performance issues, MainInputAction.UI.Disable() has not been called.");
             UnityEngine.Debug.Assert(!m_Mouse.enabled, "This will cause a leak and performance issues, MainInputAction.Mouse.Disable() has not been called.");
+            UnityEngine.Debug.Assert(!m_Dialog.enabled, "This will cause a leak and performance issues, MainInputAction.Dialog.Disable() has not been called.");
         }
 
         /// <summary>
@@ -1729,6 +1782,113 @@ namespace Game.Input
         /// Provides a new <see cref="MouseActions" /> instance referencing this action map.
         /// </summary>
         public MouseActions @Mouse => new MouseActions(this);
+
+        // Dialog
+        private readonly InputActionMap m_Dialog;
+        private List<IDialogActions> m_DialogActionsCallbackInterfaces = new List<IDialogActions>();
+        private readonly InputAction m_Dialog_Escape;
+        private readonly InputAction m_Dialog_DialogNextPhrase;
+        /// <summary>
+        /// Provides access to input actions defined in input action map "Dialog".
+        /// </summary>
+        public struct DialogActions
+        {
+            private @MainInputAction m_Wrapper;
+
+            /// <summary>
+            /// Construct a new instance of the input action map wrapper class.
+            /// </summary>
+            public DialogActions(@MainInputAction wrapper) { m_Wrapper = wrapper; }
+            /// <summary>
+            /// Provides access to the underlying input action "Dialog/Escape".
+            /// </summary>
+            public InputAction @Escape => m_Wrapper.m_Dialog_Escape;
+            /// <summary>
+            /// Provides access to the underlying input action "Dialog/DialogNextPhrase".
+            /// </summary>
+            public InputAction @DialogNextPhrase => m_Wrapper.m_Dialog_DialogNextPhrase;
+            /// <summary>
+            /// Provides access to the underlying input action map instance.
+            /// </summary>
+            public InputActionMap Get() { return m_Wrapper.m_Dialog; }
+            /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
+            public void Enable() { Get().Enable(); }
+            /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
+            public void Disable() { Get().Disable(); }
+            /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
+            public bool enabled => Get().enabled;
+            /// <summary>
+            /// Implicitly converts an <see ref="DialogActions" /> to an <see ref="InputActionMap" /> instance.
+            /// </summary>
+            public static implicit operator InputActionMap(DialogActions set) { return set.Get(); }
+            /// <summary>
+            /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+            /// </summary>
+            /// <param name="instance">Callback instance.</param>
+            /// <remarks>
+            /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
+            /// </remarks>
+            /// <seealso cref="DialogActions" />
+            public void AddCallbacks(IDialogActions instance)
+            {
+                if (instance == null || m_Wrapper.m_DialogActionsCallbackInterfaces.Contains(instance)) return;
+                m_Wrapper.m_DialogActionsCallbackInterfaces.Add(instance);
+                @Escape.started += instance.OnEscape;
+                @Escape.performed += instance.OnEscape;
+                @Escape.canceled += instance.OnEscape;
+                @DialogNextPhrase.started += instance.OnDialogNextPhrase;
+                @DialogNextPhrase.performed += instance.OnDialogNextPhrase;
+                @DialogNextPhrase.canceled += instance.OnDialogNextPhrase;
+            }
+
+            /// <summary>
+            /// Removes <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+            /// </summary>
+            /// <remarks>
+            /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
+            /// </remarks>
+            /// <seealso cref="DialogActions" />
+            private void UnregisterCallbacks(IDialogActions instance)
+            {
+                @Escape.started -= instance.OnEscape;
+                @Escape.performed -= instance.OnEscape;
+                @Escape.canceled -= instance.OnEscape;
+                @DialogNextPhrase.started -= instance.OnDialogNextPhrase;
+                @DialogNextPhrase.performed -= instance.OnDialogNextPhrase;
+                @DialogNextPhrase.canceled -= instance.OnDialogNextPhrase;
+            }
+
+            /// <summary>
+            /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="DialogActions.UnregisterCallbacks(IDialogActions)" />.
+            /// </summary>
+            /// <seealso cref="DialogActions.UnregisterCallbacks(IDialogActions)" />
+            public void RemoveCallbacks(IDialogActions instance)
+            {
+                if (m_Wrapper.m_DialogActionsCallbackInterfaces.Remove(instance))
+                    UnregisterCallbacks(instance);
+            }
+
+            /// <summary>
+            /// Replaces all existing callback instances and previously registered input action callbacks associated with them with callbacks provided via <param cref="instance" />.
+            /// </summary>
+            /// <remarks>
+            /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
+            /// </remarks>
+            /// <seealso cref="DialogActions.AddCallbacks(IDialogActions)" />
+            /// <seealso cref="DialogActions.RemoveCallbacks(IDialogActions)" />
+            /// <seealso cref="DialogActions.UnregisterCallbacks(IDialogActions)" />
+            public void SetCallbacks(IDialogActions instance)
+            {
+                foreach (var item in m_Wrapper.m_DialogActionsCallbackInterfaces)
+                    UnregisterCallbacks(item);
+                m_Wrapper.m_DialogActionsCallbackInterfaces.Clear();
+                AddCallbacks(instance);
+            }
+        }
+        /// <summary>
+        /// Provides a new <see cref="DialogActions" /> instance referencing this action map.
+        /// </summary>
+        public DialogActions @Dialog => new DialogActions(this);
         private int m_KeyboardMouseSchemeIndex = -1;
         /// <summary>
         /// Provides access to the input control scheme.
@@ -1950,6 +2110,28 @@ namespace Game.Input
             /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
             /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
             void OnClick(InputAction.CallbackContext context);
+        }
+        /// <summary>
+        /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Dialog" which allows adding and removing callbacks.
+        /// </summary>
+        /// <seealso cref="DialogActions.AddCallbacks(IDialogActions)" />
+        /// <seealso cref="DialogActions.RemoveCallbacks(IDialogActions)" />
+        public interface IDialogActions
+        {
+            /// <summary>
+            /// Method invoked when associated input action "Escape" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+            /// </summary>
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+            void OnEscape(InputAction.CallbackContext context);
+            /// <summary>
+            /// Method invoked when associated input action "DialogNextPhrase" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+            /// </summary>
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+            void OnDialogNextPhrase(InputAction.CallbackContext context);
         }
     }
 }
