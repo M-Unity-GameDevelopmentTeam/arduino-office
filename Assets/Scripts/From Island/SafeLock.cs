@@ -1,7 +1,5 @@
 using UnityEngine;
-using DG.Tweening;
 using TMPro;
-using System;
 public class SafeLock : MonoBehaviour
 {
     [SerializeField] private Transform safeLock;
@@ -19,11 +17,11 @@ public class SafeLock : MonoBehaviour
     {
         GameHandler = FindFirstObjectByType<MiniGameHandler>();
         Arduino = FindFirstObjectByType<SerialController>();
-        Arduino.SetTearDownFunction(lightsShutdown);
+        Arduino.SetTearDownFunction(ArduinoShutdown);
     }
     private void Update()
     {
-        Arduino.SendSerialMessage("P:360");
+        Arduino.SendSerialMessage("P:10");
         if (int.TryParse(Arduino.ReadSerialMessage(), out int result))
             RotateOverwrite(result);
     }
@@ -67,7 +65,7 @@ public class SafeLock : MonoBehaviour
     private void RotateOverwrite(float angle)
     {
         if (isUnlocked || angle.Equals(currentRotation)) return;
-        currentRotation = angle;
+        currentRotation = angle * 36;
         safeLock.localEulerAngles = new Vector3(0, 0, Mathf.Round(currentRotation));
         UpdateInfoText();
     }
@@ -85,8 +83,5 @@ public class SafeLock : MonoBehaviour
         string direction = lastInputDirection > 0 ? "по часовой" : "против";
         infoText.text = "Угол: " + angle.ToString("F1") + "°\n" + "Направление: " + direction + " стрелке";
     }
-    public void lightsShutdown()
-    {
-        Arduino.enabled = false;
-    }
+    public void ArduinoShutdown() => Arduino.ClearQueue();
 }
