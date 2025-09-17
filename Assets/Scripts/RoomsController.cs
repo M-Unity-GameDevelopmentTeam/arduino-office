@@ -40,7 +40,11 @@ public class RoomsController : MonoBehaviour
         else
             CurrentRoomXIndex += Direction;
         print(CurrentRoomXIndex);
-        transform.DOLocalMoveX(CurrentRoomXIndex * -Padding, 1).OnComplete(() => GetCurrentRoom());
+        transform.DOLocalMoveX(CurrentRoomXIndex * -Padding, 1);//.OnComplete(() => GetCurrentRoom());
+    }
+    public void SetCurrentRoom(Room NewRoom)
+    {
+        CurrentRoom = NewRoom;
     }
     public void ChangeRoomsZ(int Direction)
     {
@@ -48,20 +52,21 @@ public class RoomsController : MonoBehaviour
             CurrentRoomZIndex = 0;
         else
             CurrentRoomZIndex += Direction;
-        transform.DOLocalMoveZ(CurrentRoomZIndex * -Padding, 1).OnComplete(() => GetCurrentRoom());
+        transform.DOLocalMoveZ(CurrentRoomZIndex * -Padding, 1);//.OnComplete(() => GetCurrentRoom());
     }
     public void MoveToRoomsX(int Multiplier)
     {
         CurrentRoomXIndex = Multiplier;
-        transform.DOLocalMoveX(Multiplier * -Padding, 1).OnComplete(() => GetCurrentRoom());
+        transform.DOLocalMoveX(Multiplier * -Padding, 1);//.OnComplete(() => GetCurrentRoom());
     }
     public void MoveToRoomsZ(int Multiplier)
     {
         CurrentRoomZIndex = Multiplier;
-        transform.DOLocalMoveZ(Multiplier * -Padding, 1).OnComplete(() => GetCurrentRoom());
+        transform.DOLocalMoveZ(Multiplier * -Padding, 1);//.OnComplete(() => GetCurrentRoom());
     }
-    private void GetCurrentRoom()
-    {
-        CurrentRoom = Physics.OverlapBox(Vector3.zero, Vector3.one, Quaternion.identity, RoomsMask)[0].GetComponent<Room>();
-    }
+    //private void GetCurrentRoom()
+    //{
+    //    print(Physics.OverlapBox(Vector3.zero, Vector3.one, Quaternion.identity, RoomsMask));
+    //    CurrentRoom = Physics.OverlapBox(Vector3.zero, Vector3.one*5, Quaternion.identity, RoomsMask)[0].GetComponent<Room>();
+    //}
 }

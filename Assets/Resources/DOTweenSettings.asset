@@ -28,8 +28,8 @@ MonoBehaviour:
   defaultAutoPlay: 3
   defaultUpdateType: 0
   defaultTimeScaleIndependent: 0
-  defaultEaseType: 10
-  defaultEaseOvershootOrAmplitude: 1.70158
+  defaultEaseType: 25
+  defaultEaseOvershootOrAmplitude: 1.7
   defaultEasePeriod: 0
   defaultAutoKill: 1
   defaultLoopType: 0

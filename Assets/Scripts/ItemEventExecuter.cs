@@ -1,0 +1,30 @@
+using System.Collections;
+using UnityEngine;
+using UnityEngine.Events;
+
+public class ItemEventExecuter : MonoBehaviour, IItem
+{
+    [SerializeField] private Room Room;
+    [SerializeField] private DarkDirector Dark;
+    [SerializeField] private GameObject Camera;
+    [SerializeField] private UnityEvent A;
+    [SerializeField] private float EventDuration;
+    [SerializeField] private float DelayBeforeEvent;
+    public void InteractWithItem()
+    {
+        print(Room.FRoomID);
+        StartCoroutine(nameof(EventExecution));
+    }
+    private IEnumerator EventExecution()
+    {
+        Camera.SetActive(true);
+        yield return new WaitForSeconds(DelayBeforeEvent);
+        Dark.Dark();
+        yield return new WaitForSeconds(0.5f);
+        A.Invoke();
+        yield return new WaitForSeconds(EventDuration);
+        Camera.SetActive(false);
+        yield return new WaitForSeconds(DelayBeforeEvent-1);
+        Dark.UnDark();
+    }
+}

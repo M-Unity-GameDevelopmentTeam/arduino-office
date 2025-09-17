@@ -1,20 +1,14 @@
 using UnityEngine;
 
-public class Item : MonoBehaviour
+public class Item : MonoBehaviour, IItem
 {
     [SerializeField] private Room Room;
     [SerializeField] private GameObject Camera;
-    void Start()
-    {
-
-    }
-    void Update()
-    {
-
-    }
+    private bool IsInteracted;
     public void InteractWithItem()
     {
         print(Room.FRoomID);
-        Camera.SetActive(true);
+        IsInteracted = !IsInteracted;
+        Camera.SetActive(IsInteracted);
     }
 }

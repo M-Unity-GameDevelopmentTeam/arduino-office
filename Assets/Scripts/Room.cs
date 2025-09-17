@@ -7,8 +7,8 @@ public class Room : MonoBehaviour
     [SerializeField] private GameObject Walls2;
     [SerializeField] bool Direction;
     [SerializeField] int DirectionAngle;
-    [SerializeField] private float MoveIn = 0.2f;
-    [SerializeField] private float MoveOut = -5;
+    [SerializeField] private float MoveIn = 0;
+    [SerializeField] private float MoveOut = -4;
     public string FRoomID => RoomID;
     public void RotateRoom()
     {
