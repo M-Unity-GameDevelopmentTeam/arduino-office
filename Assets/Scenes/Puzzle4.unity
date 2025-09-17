@@ -1354,7 +1354,8 @@ MonoBehaviour:
   reconnectionDelay: 1000
   maxUnreadMessages: 1
   dropOldMessage: 1
-  readAllMessages: 1
+  logDroppedMessages: 0
+  readAllMessages: 0
   dtrEnable: 0
   rtsEnable: 0
 --- !u!114 &1559354997
