@@ -28,7 +28,7 @@ MonoBehaviour:
   defaultAutoPlay: 3
   defaultUpdateType: 0
   defaultTimeScaleIndependent: 0
-  defaultEaseType: 25
+  defaultEaseType: 10
   defaultEaseOvershootOrAmplitude: 1.7
   defaultEasePeriod: 0
   defaultAutoKill: 1

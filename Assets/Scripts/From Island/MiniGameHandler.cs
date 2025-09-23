@@ -15,11 +15,12 @@ public class MiniGameHandler : MonoBehaviour
     const string MorseCodeScene = "Puzzle2";
     const string GarlandScene = "Puzzle3";
     const string VaultScene = "Puzzle4";
+    const string DoorScene = "Puzzle5";
     private GameObject CurrentScheme;
     private void Awake()
     {
         Dark = FindFirstObjectByType<DarkAnimationDirector>();
-        CurrentCHID = (MiniGamesTypes)Enum.Parse(typeof(MiniGamesTypes), PlayerPrefs.GetString("CHID", "NULL"));
+        CurrentCHID = (MiniGamesTypes)Enum.Parse(typeof(MiniGamesTypes), "DoorUnlock");//PlayerPrefs.GetString("CHID", "NULL"));
         switch(CurrentCHID)
         {
             case MiniGamesTypes.PasswordBreaker:
@@ -38,6 +39,10 @@ public class MiniGameHandler : MonoBehaviour
                 CurrentPuzzle = VaultScene;
                 CurrentScheme = Schemes[3];
                 break;
+            case MiniGamesTypes.DoorUnlock:
+                CurrentPuzzle = DoorScene;
+                CurrentScheme = Schemes[4];
+                break;
             case MiniGamesTypes.NULL:
                 Debug.LogError("CHID is not defined in NPC");
                 break;
@@ -54,11 +59,11 @@ public class MiniGameHandler : MonoBehaviour
     }
     private IEnumerator LoadGame(string SceneToLoad)
     {
-        Dark.Dark();
+        //Dark.Dark();
         yield return new WaitForSeconds(1);
         CanvasGroup.blocksRaycasts = false;
         CanvasGroup.interactable = false;
-        Dark.UnDark();
+        //Dark.UnDark();
         SceneManager.LoadScene(SceneToLoad, LoadSceneMode.Additive);
     }
     public void UnLoadGame()

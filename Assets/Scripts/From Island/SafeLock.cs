@@ -3,14 +3,11 @@ using TMPro;
 public class SafeLock : MonoBehaviour
 {
     [SerializeField] private Transform safeLock;
-    [SerializeField] private TextMeshProUGUI infoText;
-    [SerializeField] private float rotationStep = 5f;
-    [SerializeField] private float[] combination = { 240f, 120f, 300f };
-    [SerializeField] private bool[] correctDirections = { true, false, true };
-    private float currentRotation = 0f;
-    private int step = 0;
-    private bool isUnlocked = false;
-    private float lastInputDirection = 0f;
+    [SerializeField] private TMP_Text infoText;
+    [SerializeField] private int[] Combination;
+    private float CurrentRotation;
+    private int CurrentStep;
+    private int Step;
     private MiniGameHandler GameHandler;
     private SerialController Arduino;
     private void Awake()
@@ -21,67 +18,38 @@ public class SafeLock : MonoBehaviour
     }
     private void Update()
     {
-        Arduino.SendSerialMessage("P:10");
+        Arduino.SendSerialMessage("P:20");
         if (int.TryParse(Arduino.ReadSerialMessage(), out int result))
-            RotateOverwrite(result);
+        {
+            CurrentStep = result;
+            Rotate(CurrentStep);
+            CheckStep();
+        }
     }
-    public void RotateLeft()
-    {
-        lastInputDirection = 1f;
-        Rotate(rotationStep);
-    }
-
-    public void RotateRight()
-    {
-        lastInputDirection = -1f;
-        Rotate(-rotationStep);
-    }
-
     public void CheckStep()
     {
-        float angle = currentRotation % 360f;
-        if (angle < 0) angle += 360f;
-        float targetAngle = combination[step];
-        float delta = Mathf.Abs(angle - targetAngle);
-        if (delta < 2f || Mathf.Abs(delta - 360f) < 2f)
+        if (Step < Combination.Length && Combination[Step].Equals(CurrentStep))
         {
-            Debug.Log("Выполнен шаг " + step);
-            step++;
-            if (step >= combination.Length)
+            Debug.Log($"Completed step {Step+1}");
+            Step++;
+            if (Step >= Combination.Length)
             {
-                isUnlocked = true;
+                infoText.text = "Good j*b!";
                 GameHandler.IsEnded = true;
             }
         }
     }
-
     private void Rotate(float angle)
     {
-        if (isUnlocked) return;
-        currentRotation += angle;
-        safeLock.localRotation = Quaternion.Euler(0, 0, Mathf.Round(currentRotation));
+        if (GameHandler.IsEnded || angle.Equals(CurrentRotation)) return;
         UpdateInfoText();
-    }
-    private void RotateOverwrite(float angle)
-    {
-        if (isUnlocked || angle.Equals(currentRotation)) return;
-        currentRotation = angle * 36;
-        safeLock.localEulerAngles = new Vector3(0, 0, Mathf.Round(currentRotation));
+        CurrentRotation = Mathf.Round(angle * 18);
+        safeLock.localEulerAngles = new Vector3(0, 0, CurrentRotation);
         UpdateInfoText();
-    }
-    private int GetCurrentNumber()
-    {
-        float angle = currentRotation % 360f;
-        if (angle < 0) angle += 360f;
-        return Mathf.RoundToInt(6 - (angle / 360f * 6)) % 6;
     }
     private void UpdateInfoText()
     {
-        float angle = currentRotation % 360f;
-        if (angle < 0) angle += 360f;
-        int number = GetCurrentNumber();
-        string direction = lastInputDirection > 0 ? "по часовой" : "против";
-        infoText.text = "Угол: " + angle.ToString("F1") + "°\n" + "Направление: " + direction + " стрелке";
+        infoText.text = $"Steps Completed: {Step}";
     }
     public void ArduinoShutdown() => Arduino.ClearQueue();
 }

@@ -1,1 +1,1 @@
-namespace MiniGames { public enum MiniGamesTypes { PasswordBreaker, NULL, MorseCode, Garland, VaultUnlock}}
+namespace MiniGames { public enum MiniGamesTypes { PasswordBreaker, NULL, MorseCode, Garland, VaultUnlock, DoorUnlock}}

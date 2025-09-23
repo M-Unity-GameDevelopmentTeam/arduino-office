@@ -6,6 +6,7 @@ public class RoomsController : MonoBehaviour
     [SerializeField] private int Padding;
     [SerializeField] private int ColumnSize;
     [SerializeField] private LayerMask RoomsMask;
+    [SerializeField] private float Duration;
     private int RowSize;
     private Room CurrentRoom;
     private int RoomXTempPosition;
@@ -40,7 +41,7 @@ public class RoomsController : MonoBehaviour
         else
             CurrentRoomXIndex += Direction;
         print(CurrentRoomXIndex);
-        transform.DOLocalMoveX(CurrentRoomXIndex * -Padding, 1);//.OnComplete(() => GetCurrentRoom());
+        transform.DOLocalMoveX(CurrentRoomXIndex * -Padding, Duration);//.OnComplete(() => GetCurrentRoom());
     }
     public void SetCurrentRoom(Room NewRoom)
     {
@@ -52,17 +53,17 @@ public class RoomsController : MonoBehaviour
             CurrentRoomZIndex = 0;
         else
             CurrentRoomZIndex += Direction;
-        transform.DOLocalMoveZ(CurrentRoomZIndex * -Padding, 1);//.OnComplete(() => GetCurrentRoom());
+        transform.DOLocalMoveZ(CurrentRoomZIndex * -Padding, Duration);//.OnComplete(() => GetCurrentRoom());
     }
     public void MoveToRoomsX(int Multiplier)
     {
         CurrentRoomXIndex = Multiplier;
-        transform.DOLocalMoveX(Multiplier * -Padding, 1);//.OnComplete(() => GetCurrentRoom());
+        transform.DOLocalMoveX(Multiplier * -Padding, Duration);//.OnComplete(() => GetCurrentRoom());
     }
     public void MoveToRoomsZ(int Multiplier)
     {
         CurrentRoomZIndex = Multiplier;
-        transform.DOLocalMoveZ(Multiplier * -Padding, 1);//.OnComplete(() => GetCurrentRoom());
+        transform.DOLocalMoveZ(Multiplier * -Padding, Duration);//.OnComplete(() => GetCurrentRoom());
     }
     //private void GetCurrentRoom()
     //{

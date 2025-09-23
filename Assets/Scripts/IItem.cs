@@ -1,7 +1,4 @@
 public interface IItem
 {
-    public void InteractWithItem()
-    {
-
-    }
+    void InteractWithItem();
 }
