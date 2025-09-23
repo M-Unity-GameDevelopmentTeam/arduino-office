@@ -1,6 +1,16 @@
-#define SPEAKER_PIN 11
+#include <MFRC522.h>
+#define SPEAKER_PIN 9
 #define POTENTIOMETER_PIN A1
-#define BUTTON_PIN 8
+#define RFID_SS_PIN 5
+int ledPin1 = 2;
+int ledPin2 = 3;
+int ledPin3 = 4;
+int leds[] = {ledPin1, ledPin2, ledPin3};
+int buttonPin1 = 8;
+int buttonPin2 = 7;
+int buttonPin3 = 6;
+int buttons[] = {buttonPin1, buttonPin2, buttonPin3};
+MFRC522 rfid(RFID_SS_PIN,10);
 int separator;
 String part1;
 String part2;
@@ -26,12 +36,19 @@ void playMorseCode() {
 }
 void setup() {
   Serial.begin(9600);
-  pinMode(SPEAKER_PIN,OUTPUT);
-  pinMode(POTENTIOMETER_PIN,INPUT);
-  pinMode(BUTTON_PIN,INPUT_PULLUP);
+  SPI.begin();
+  rfid.PCD_Init();
+  pinMode(SPEAKER_PIN, OUTPUT);
+  pinMode(POTENTIOMETER_PIN, INPUT);
+  pinMode(ledPin1, OUTPUT);
+  pinMode(ledPin2, OUTPUT);
+  pinMode(ledPin3, OUTPUT);
+  pinMode(buttonPin1, INPUT_PULLUP);
+  pinMode(buttonPin2, INPUT_PULLUP);
+  pinMode(buttonPin3, INPUT_PULLUP);
 }
 void loop() {
-  if (digitalRead(8) == LOW) playMorseCode();
+  if (digitalRead(buttonPin1) == LOW) playMorseCode();
   if (Serial.available() > 0) {
     data = Serial.readStringUntil('\n');
     data.trim();
@@ -44,15 +61,28 @@ void loop() {
           playMorseCode();
           break;
        case 'P':
-          if (map(analogRead(A1), 0, 1023, 0, part2.toInt()) != currentValue)
+          if (map(analogRead(POTENTIOMETER_PIN), 0, 1023, 0, part2.toInt()) != currentValue)
           {
-            currentValue = map(analogRead(A1), 0, 1023, 0, part2.toInt());
+            currentValue = map(analogRead(POTENTIOMETER_PIN), 0, 1023, 0, part2.toInt());
             Serial.println(currentValue);
           }
           break;
-       case 'B':
-          Serial.println(analogRead(A1));
+       case 'D':
+          Serial.println(analogRead(POTENTIOMETER_PIN));
           break;
+       case 'K':
+          Serial.println(rfid.PICC_IsNewCardPresent());
+          break;
+       case 'B':
+          Serial.println(part2 + ":" + digitalRead(buttons[part2.toInt()]));
+          break;
+       case 'H':
+          digitalWrite(leds[part2.toInt()], HIGH);
+          break;
+       case 'L':
+          digitalWrite(leds[part2.toInt()], LOW);
+          break;
+          
     }
   }
 }
