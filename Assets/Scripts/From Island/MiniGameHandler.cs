@@ -20,7 +20,7 @@ public class MiniGameHandler : MonoBehaviour
     private void Awake()
     {
         Dark = FindFirstObjectByType<DarkDirector>();
-        CurrentCHID = (MiniGamesTypes)Enum.Parse(typeof(MiniGamesTypes), "DoorUnlock");//PlayerPrefs.GetString("CHID", "NULL"));
+        CurrentCHID = (MiniGamesTypes)Enum.Parse(typeof(MiniGamesTypes), "MorseCode");//PlayerPrefs.GetString("CHID", "NULL"));
         switch(CurrentCHID)
         {
             case MiniGamesTypes.PasswordBreaker:

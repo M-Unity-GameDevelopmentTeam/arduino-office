@@ -6,7 +6,7 @@ public class MorseCodePuzzle : MonoBehaviour
     [SerializeField] private TMP_Text inputText;
     [SerializeField] private TMP_Text resultText;
     [SerializeField] private InputAction morseInput;
-    [SerializeField] private SerialController Arduino;
+    private SerialController Arduino;
     private bool isHolding = false;
     private float pressTime = 0f;
     private const float holdThreshold = 0.5f; 
@@ -17,6 +17,7 @@ public class MorseCodePuzzle : MonoBehaviour
     private void Awake()
     {
         GameHandler = FindFirstObjectByType<MiniGameHandler>();
+        Arduino = FindFirstObjectByType<SerialController>();
         morseInput = new InputAction("MorsePress", InputActionType.Button);
         morseInput.AddBinding("<Keyboard>/space");
         morseInput.performed += ctx => StartPress();
