@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 18628618}
   - component: {fileID: 18628624}
   - component: {fileID: 18628623}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -200,8 +200,8 @@ Canvas:
   m_VertexColorAlwaysGammaSpace: 1
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 1266244319
-  m_SortingOrder: 0
+  m_SortingLayerID: 1606111531
+  m_SortingOrder: 32767
   m_TargetDisplay: 0
 --- !u!224 &18628621
 RectTransform:
@@ -261,7 +261,7 @@ GameObject:
   - component: {fileID: 1421854350}
   - component: {fileID: 1421854349}
   - component: {fileID: 1421854348}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: EventSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -340,7 +340,7 @@ GameObject:
   - component: {fileID: 1444523154}
   - component: {fileID: 1444523153}
   - component: {fileID: 1444523152}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: Debug
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -778,7 +778,7 @@ GameObject:
   - component: {fileID: 2011656455}
   - component: {fileID: 2011656457}
   - component: {fileID: 2011656456}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}

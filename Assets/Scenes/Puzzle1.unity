@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 149253932}
   - component: {fileID: 149253931}
   - component: {fileID: 149253930}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -223,8 +223,8 @@ Canvas:
   m_VertexColorAlwaysGammaSpace: 1
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 1266244319
-  m_SortingOrder: 0
+  m_SortingLayerID: 1606111531
+  m_SortingOrder: 32767
   m_TargetDisplay: 0
 --- !u!224 &149253934
 RectTransform:
@@ -258,7 +258,7 @@ GameObject:
   - component: {fileID: 226624741}
   - component: {fileID: 226624743}
   - component: {fileID: 226624742}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: +
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -395,7 +395,7 @@ GameObject:
   - component: {fileID: 379900763}
   - component: {fileID: 379900762}
   - component: {fileID: 379900761}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: 2 button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -528,7 +528,7 @@ GameObject:
   - component: {fileID: 474577138}
   - component: {fileID: 474577137}
   - component: {fileID: 474577136}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -664,7 +664,7 @@ GameObject:
   - component: {fileID: 702975544}
   - component: {fileID: 702975546}
   - component: {fileID: 702975545}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: Done
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -802,7 +802,7 @@ GameObject:
   - component: {fileID: 742872624}
   - component: {fileID: 742872623}
   - component: {fileID: 742872622}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -938,7 +938,7 @@ GameObject:
   - component: {fileID: 763013572}
   - component: {fileID: 763013574}
   - component: {fileID: 763013573}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: +
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1075,7 +1075,7 @@ GameObject:
   - component: {fileID: 890989189}
   - component: {fileID: 890989188}
   - component: {fileID: 890989187}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: 1 button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1208,7 +1208,7 @@ GameObject:
   - component: {fileID: 1122395744}
   - component: {fileID: 1122395743}
   - component: {fileID: 1122395742}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1344,7 +1344,7 @@ GameObject:
   - component: {fileID: 1759494705}
   - component: {fileID: 1759494707}
   - component: {fileID: 1759494706}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: Guess the Code!
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1480,7 +1480,7 @@ GameObject:
   - component: {fileID: 1867875533}
   - component: {fileID: 1867875535}
   - component: {fileID: 1867875534}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1560,7 +1560,7 @@ GameObject:
   - component: {fileID: 2032667682}
   - component: {fileID: 2032667684}
   - component: {fileID: 2032667683}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: +
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1859,7 +1859,7 @@ GameObject:
   - component: {fileID: 2068046746}
   - component: {fileID: 2068046745}
   - component: {fileID: 2068046744}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: 3 button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1992,7 +1992,7 @@ GameObject:
   - component: {fileID: 2091001109}
   - component: {fileID: 2091001108}
   - component: {fileID: 2091001107}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: EventSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2072,7 +2072,7 @@ GameObject:
   - component: {fileID: 2118059496}
   - component: {fileID: 2118059495}
   - component: {fileID: 2118059494}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: Enter
   m_TagString: Untagged
   m_Icon: {fileID: 0}

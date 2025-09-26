@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 149253932}
   - component: {fileID: 149253931}
   - component: {fileID: 149253935}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -199,7 +199,7 @@ Canvas:
   m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 1266244319
+  m_SortingLayerID: 1606111531
   m_SortingOrder: 32767
   m_TargetDisplay: 0
 --- !u!224 &149253934
@@ -270,7 +270,7 @@ GameObject:
   - component: {fileID: 858644586}
   - component: {fileID: 858644585}
   - component: {fileID: 858644584}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: CodeText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -406,7 +406,7 @@ GameObject:
   - component: {fileID: 890009480}
   - component: {fileID: 890009482}
   - component: {fileID: 890009481}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -482,7 +482,7 @@ GameObject:
   - component: {fileID: 1012887979}
   - component: {fileID: 1012887978}
   - component: {fileID: 1012887977}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -614,7 +614,7 @@ GameObject:
   - component: {fileID: 1044576759}
   - component: {fileID: 1044576758}
   - component: {fileID: 1044576757}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: MessageText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -750,7 +750,7 @@ GameObject:
   - component: {fileID: 1392950305}
   - component: {fileID: 1392950307}
   - component: {fileID: 1392950306}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: Code
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -826,7 +826,7 @@ GameObject:
   - component: {fileID: 1759494705}
   - component: {fileID: 1759494707}
   - component: {fileID: 1759494706}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -962,7 +962,7 @@ GameObject:
   - component: {fileID: 2008914732}
   - component: {fileID: 2008914734}
   - component: {fileID: 2008914733}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: Start
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1257,7 +1257,7 @@ GameObject:
   - component: {fileID: 2091001109}
   - component: {fileID: 2091001108}
   - component: {fileID: 2091001107}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: EventSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}

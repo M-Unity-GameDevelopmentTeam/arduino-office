@@ -12,7 +12,7 @@ TagManager:
   - Water
   - UI
   - Item
-  - 
+  - MiniGame
   - 
   - 
   - 
@@ -40,6 +40,12 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Scheme
+    uniqueID: 354506847
+    locked: 0
+  - name: Mini Game
+    uniqueID: 1606111531
     locked: 0
   m_RenderingLayers:
   - Default

@@ -1,9 +1,9 @@
 using System;
-using System.Linq.Expressions;
 using UnityEngine;
 public class ColorPanel : MonoBehaviour
 {
     [SerializeField] private Garland[] LEDs;
+    [SerializeField] private int[] LEDPins;
     private MiniGameHandler GameHandler;
     private SerialController Arduino;
     private int CurrentButton = 0;
@@ -19,7 +19,7 @@ public class ColorPanel : MonoBehaviour
     private void Update()
     {
         if (GameHandler.IsEnded || !IsStarted) return;
-        Arduino.SendSerialMessage($"B:{CurrentButton}");
+        Arduino.SendSerialMessage($"B:{LEDPins[CurrentButton]}");
         TempMessage = Arduino.ReadSerialMessage();
         try
         {
@@ -30,10 +30,10 @@ public class ColorPanel : MonoBehaviour
     public void StartGame() => IsStarted = true;
     public void CheckStep(string result)
     {
-        if (result[0].Equals(CurrentButton.ToString()[0]) && result[2].Equals('0'))
+        if (result[0].Equals(LEDPins[CurrentButton].ToString()[0]) && result[2].Equals('0'))
         {
             Arduino.ClearQueue();
-            Arduino.SendSerialMessage($"H:{CurrentButton}");
+            Arduino.SendSerialMessage($"H:{LEDPins[CurrentButton]}");
             LEDs[CurrentButton].ColorChange();
             if (!CurrentButton.Equals(2))
                 CurrentButton++;

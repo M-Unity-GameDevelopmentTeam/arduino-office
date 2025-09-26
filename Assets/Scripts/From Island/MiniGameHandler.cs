@@ -7,8 +7,8 @@ public class MiniGameHandler : MonoBehaviour
 {
     [SerializeField] private CanvasGroup CanvasGroup;
     [SerializeField] private GameObject[] Schemes;
+    [SerializeField] private DarkDirector Dark;
     private MiniGamesTypes CurrentCHID;
-    private DarkDirector Dark;
     private string CurrentPuzzle;
     public bool IsEnded;
     const string PasswordBreakScene = "Puzzle1";
@@ -19,8 +19,7 @@ public class MiniGameHandler : MonoBehaviour
     private GameObject CurrentScheme;
     private void Awake()
     {
-        Dark = FindFirstObjectByType<DarkDirector>();
-        CurrentCHID = (MiniGamesTypes)Enum.Parse(typeof(MiniGamesTypes), "MorseCode");//PlayerPrefs.GetString("CHID", "NULL"));
+        CurrentCHID = (MiniGamesTypes)Enum.Parse(typeof(MiniGamesTypes), "Garland");//PlayerPrefs.GetString("CHID", "NULL"));
         switch(CurrentCHID)
         {
             case MiniGamesTypes.PasswordBreaker:
@@ -59,11 +58,11 @@ public class MiniGameHandler : MonoBehaviour
     }
     private IEnumerator LoadGame(string SceneToLoad)
     {
-        //Dark.Dark();
+        Dark.Dark();
         yield return new WaitForSeconds(1);
         CanvasGroup.blocksRaycasts = false;
         CanvasGroup.interactable = false;
-        //Dark.UnDark();
+        Dark.UnDark();
         SceneManager.LoadScene(SceneToLoad, LoadSceneMode.Additive);
     }
     public void UnLoadGame()

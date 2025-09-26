@@ -10,12 +10,13 @@ public class ItemEventExecuter : MonoBehaviour, IItem
     [SerializeField] private UnityEvent A;
     [SerializeField] private float EventDuration;
     [SerializeField] private float DelayBeforeEvent;
+    [SerializeField] private bool DoAnimation = true;
     public void InteractWithItem()
     {
         print(Room.FRoomID);
-        StartCoroutine(nameof(EventExecution));
+        StartCoroutine(DoAnimation ? nameof(EventExecutionWithAnimation) : nameof(EventExecution));
     }
-    private IEnumerator EventExecution()
+    private IEnumerator EventExecutionWithAnimation()
     {
         Camera.SetActive(true);
         yield return new WaitForSeconds(DelayBeforeEvent);
@@ -24,7 +25,14 @@ public class ItemEventExecuter : MonoBehaviour, IItem
         A.Invoke();
         yield return new WaitForSeconds(EventDuration);
         Camera.SetActive(false);
-        yield return new WaitForSeconds(DelayBeforeEvent-1);
+        yield return new WaitForSeconds(DelayBeforeEvent - 1);
         Dark.UnDark();
+    }
+
+    private IEnumerator EventExecution()
+    {
+        Camera.SetActive(true);
+        A.Invoke();
+        yield return 1;
     }
 }

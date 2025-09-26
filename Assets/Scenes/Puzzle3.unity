@@ -130,7 +130,7 @@ GameObject:
   - component: {fileID: 157971775}
   - component: {fileID: 157971774}
   - component: {fileID: 157971773}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: EventSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -210,7 +210,7 @@ GameObject:
   - component: {fileID: 442443769}
   - component: {fileID: 442443768}
   - component: {fileID: 442443770}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -301,7 +301,7 @@ GameObject:
   - component: {fileID: 1135757328}
   - component: {fileID: 1135757327}
   - component: {fileID: 1135757331}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -368,8 +368,8 @@ Canvas:
   m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 1266244319
-  m_SortingOrder: 0
+  m_SortingLayerID: 1606111531
+  m_SortingOrder: 32767
   m_TargetDisplay: 0
 --- !u!224 &1135757330
 RectTransform:
@@ -408,6 +408,7 @@ MonoBehaviour:
   - {fileID: 2142978081}
   - {fileID: 442443770}
   - {fileID: 1872165512}
+  LEDPins: 020000000100000000000000
 --- !u!1 &1511464861
 GameObject:
   m_ObjectHideFlags: 0
@@ -417,7 +418,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1511464862}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: Lightbulbs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -599,7 +600,7 @@ GameObject:
   - component: {fileID: 1820771537}
   - component: {fileID: 1820771539}
   - component: {fileID: 1820771538}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -677,7 +678,7 @@ GameObject:
   - component: {fileID: 1872165511}
   - component: {fileID: 1872165510}
   - component: {fileID: 1872165512}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -767,7 +768,7 @@ GameObject:
   - component: {fileID: 1905166692}
   - component: {fileID: 1905166691}
   - component: {fileID: 1905166690}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: StartButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -899,7 +900,7 @@ GameObject:
   - component: {fileID: 2036619637}
   - component: {fileID: 2036619639}
   - component: {fileID: 2036619638}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1036,7 +1037,7 @@ GameObject:
   - component: {fileID: 2142978080}
   - component: {fileID: 2142978079}
   - component: {fileID: 2142978081}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
