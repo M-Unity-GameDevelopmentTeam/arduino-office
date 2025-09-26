@@ -19,7 +19,7 @@ public class MiniGameHandler : MonoBehaviour
     private GameObject CurrentScheme;
     private void Awake()
     {
-        CurrentCHID = (MiniGamesTypes)Enum.Parse(typeof(MiniGamesTypes), "Garland");//PlayerPrefs.GetString("CHID", "NULL"));
+        CurrentCHID = (MiniGamesTypes)Enum.Parse(typeof(MiniGamesTypes), PlayerPrefs.GetString("CHID", "NULL"));
         switch(CurrentCHID)
         {
             case MiniGamesTypes.PasswordBreaker:

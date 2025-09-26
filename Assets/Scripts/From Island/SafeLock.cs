@@ -4,16 +4,19 @@ public class SafeLock : MonoBehaviour
 {
     [SerializeField] private Transform safeLock;
     [SerializeField] private TMP_Text infoText;
+    [SerializeField] private AudioClip Click;
     [SerializeField] private int[] Combination;
     private float CurrentRotation;
     private int CurrentStep;
     private int Step;
     private MiniGameHandler GameHandler;
     private SerialController Arduino;
+    private AudioSource Source;
     private void Awake()
     {
         GameHandler = FindFirstObjectByType<MiniGameHandler>();
         Arduino = FindFirstObjectByType<SerialController>();
+        Source = FindFirstObjectByType<AudioSource>();
         Arduino.SetTearDownFunction(ArduinoShutdown);
     }
     private void Update()
@@ -30,12 +33,14 @@ public class SafeLock : MonoBehaviour
     {
         if (Step < Combination.Length && Combination[Step].Equals(CurrentStep))
         {
-            Debug.Log($"Completed step {Step+1}");
+            //Debug.Log($"Completed step {Step+1}");
+            Source.PlayOneShot(Click);
             Step++;
             if (Step >= Combination.Length)
             {
-                infoText.text = "Good j*b!";
+                //infoText.text = "Good j*b!";
                 GameHandler.IsEnded = true;
+                ArduinoShutdown();
             }
         }
     }

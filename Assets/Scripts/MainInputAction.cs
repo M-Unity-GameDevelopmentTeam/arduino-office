@@ -1125,7 +1125,7 @@ namespace Game.Input
                 {
                     ""name"": """",
                     ""id"": ""dfe96d4b-fd05-4813-9ab5-942fb15297ba"",
-                    ""path"": """",
+                    ""path"": ""<Keyboard>/escape"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -1136,7 +1136,7 @@ namespace Game.Input
                 {
                     ""name"": """",
                     ""id"": ""0c7725ba-05d8-4408-87f3-0f2a4a6aa2e6"",
-                    ""path"": """",
+                    ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

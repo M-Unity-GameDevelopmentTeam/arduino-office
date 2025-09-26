@@ -1,7 +1,7 @@
 using System.Collections; using UnityEngine; using Unity.Burst; 
 [BurstCompile] public class DialGiver : MonoBehaviour
 {
-    private GameObject DialogPanel;
+    [SerializeField] private GameObject DialogPanel;
     [SerializeField] private TextAsset JsonEN; 
     [SerializeField] private TextAsset JsonRU;
     [SerializeField] private TextAsset JsonToUse; 
@@ -12,7 +12,7 @@ using System.Collections; using UnityEngine; using Unity.Burst;
     }
     private void Start()
     {
-        DialogPanel = GameObject.Find("Systems").GetComponent<GameObjectFinder>().FoundDisabledObjectsF[0];
+        //DialogPanel = //GameObject.Find("Systems").GetComponent<GameObjectFinder>().FoundDisabledObjectsF[0];
     }
     private void GiveDial()
     {
