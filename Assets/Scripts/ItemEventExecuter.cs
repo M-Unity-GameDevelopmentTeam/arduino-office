@@ -4,7 +4,6 @@ using UnityEngine.Events;
 
 public class ItemEventExecuter : MonoBehaviour, IItem
 {
-    [SerializeField] private Room Room;
     [SerializeField] private DarkDirector Dark;
     [SerializeField] private GameObject Camera;
     [SerializeField] private UnityEvent A;
@@ -13,7 +12,6 @@ public class ItemEventExecuter : MonoBehaviour, IItem
     [SerializeField] private bool DoAnimation = true;
     public void InteractWithItem()
     {
-        print(Room.FRoomID);
         StartCoroutine(DoAnimation ? nameof(EventExecutionWithAnimation) : nameof(EventExecution));
     }
     private IEnumerator EventExecutionWithAnimation()

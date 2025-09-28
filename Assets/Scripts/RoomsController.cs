@@ -1,5 +1,6 @@
 using UnityEngine;
 using DG.Tweening;
+using TMPro;
 public class RoomsController : MonoBehaviour
 {
     [SerializeField] private GameObject[] Rooms;
@@ -7,6 +8,7 @@ public class RoomsController : MonoBehaviour
     [SerializeField] private int ColumnSize;
     [SerializeField] private LayerMask RoomsMask;
     [SerializeField] private float Duration;
+    [SerializeField] private TMP_Text RoomIDText;
     private int RowSize;
     private Room CurrentRoom;
     private int RoomXTempPosition;
@@ -46,6 +48,7 @@ public class RoomsController : MonoBehaviour
     public void SetCurrentRoom(Room NewRoom)
     {
         CurrentRoom = NewRoom;
+        RoomIDText.text = CurrentRoom.FRoomID;
     }
     public void ChangeRoomsZ(int Direction)
     {
