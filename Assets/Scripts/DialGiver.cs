@@ -1,14 +1,17 @@
-using System.Collections; using UnityEngine; using Unity.Burst; 
-[BurstCompile] public class DialGiver : MonoBehaviour
+using System.Collections;
+using UnityEngine;
+using Unity.Burst;
+[BurstCompile]
+public class DialGiver : MonoBehaviour
 {
     [SerializeField] private GameObject DialogPanel;
-    [SerializeField] private TextAsset JsonEN; 
+    [SerializeField] private TextAsset JsonEN;
     [SerializeField] private TextAsset JsonRU;
-    [SerializeField] private TextAsset JsonToUse; 
+    [SerializeField] private TextAsset JsonToUse;
     [SerializeField] private AudioClip[] TextSoundsToUse;
     private void Awake()
     {
-        JsonToUse = PlayerPrefs.GetInt("Language",0).Equals(1) ? JsonRU : JsonEN;
+        JsonToUse = PlayerPrefs.GetInt("Language", 0).Equals(1) ? JsonRU : JsonEN;
     }
     private void Start()
     {
@@ -27,5 +30,5 @@ using System.Collections; using UnityEngine; using Unity.Burst;
         yield return new WaitUntil(() => DialogPanel.GetComponent<Dial>().IsEndedF);
         DialogPanel.GetComponent<Dial>().IsEndedF = false;
         yield return true;
-    }							
+    }
 }
